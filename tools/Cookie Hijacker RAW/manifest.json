@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Ultimate Cookie Capturer",
+  "version": "1.0",
+  "description": "Capture and manage cookies across all websites with ease.",
+  "permissions": [
+    "cookies",
+    "tabs",
+    "webNavigation",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

